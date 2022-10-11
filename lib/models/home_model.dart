@@ -24,27 +24,27 @@ class Director extends Person {
 int counter = 1;
 
 class MovieItem {
-  late int rank;
-  late String imageURL;
-  late String title;
-  late String playDate;
-  late double rating;
-  late List<String> genres;
-  late List<Actor> casts;
-  late Director director;
-  late String originalTitle;
+  late int rank;  //排名
+  late String imageURL;  //电影图片
+  late String title;  //电影名称
+  late String playDate;  //上映时间
+  late double rating;  //评分
+  late List<String> genres;  //体裁
+  late List<Actor> casts;  //演员信息
+  late Director director;  //导演信息
+  late String originalTitle;  //原名称
 
   MovieItem.fromMap(Map<String, dynamic> json) {
-    this.rank = counter++;
-    this.imageURL = json["images"]["medium"];
-    this.title = json["title"];
-    this.playDate = json["year"];
-    this.rating = json["rating"]["average"];
-    this.genres = json["genres"].cast<String>();
-    this.casts = (json["casts"] as List<dynamic>).map((item) {
+    rank = counter++;
+    imageURL = json["images"]["medium"];
+    title = json["title"];
+    playDate = json["year"];
+    rating = json["rating"]["average"];
+    genres = json["genres"].cast<String>();
+    casts = (json["casts"] as List<dynamic>).map((item) {
       return Actor.fromMap(item);
     }).toList();
-    this.director = Director.fromMap(json["directors"][0]);
-    this.originalTitle = json["original_title"];
+    director = Director.fromMap(json["directors"][0]);
+    originalTitle = json["original_title"];
   }
 }
